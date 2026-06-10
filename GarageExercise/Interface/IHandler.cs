@@ -10,5 +10,6 @@ namespace GarageExercise.Interface
         bool AddVehicle(Vehicle vehicle);
         bool RemoveVehicle(string registrationNumber);
         Vehicle? FindVehicle(string registrationNumber);
+        IEnumerable<object> GetAllVehicles();
     }
 }

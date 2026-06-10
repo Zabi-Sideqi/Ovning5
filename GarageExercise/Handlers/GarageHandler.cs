@@ -30,7 +30,14 @@ namespace GarageExercise.Handlers
             return garage.FindVehicle(registrationNumber);
         }
 
+        public IEnumerable<Vehicle> GetAllVehicles()
+        {
+            return garage;
+        }
 
-
+        IEnumerable<object> IHandler.GetAllVehicles()
+        {
+            return GetAllVehicles();
+        }
     }
 }

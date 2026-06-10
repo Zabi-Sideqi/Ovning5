@@ -6,7 +6,7 @@ using GarageExercise.Models;
 
 namespace GarageExercise.Interface
 {
-    public interface IGarage<T> where T : Vehicle
+    public interface IGarage<T> : IEnumerable<T> where T : Vehicle
     {
         bool AddVehicle(T vehicle);
         bool RemoveVehicle( string registrationNumber);

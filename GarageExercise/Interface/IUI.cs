@@ -6,6 +6,6 @@ namespace GarageExercise.Interface
 {
     public interface IUI
     {
-        void ShowMainMenu();
+        void Start();
     }
 }

@@ -3,6 +3,7 @@ using GarageExercise.Handlers;
 using GarageExercise.Interface;
 using GarageExercise.Models;
 using GarageExercise.UI;
+using System.Diagnostics.Metrics;
 
 namespace GarageExercise
 {
@@ -12,10 +13,13 @@ namespace GarageExercise
         {
             IUI ui = new ConsoleUI();
 
-            ui.ShowMainMenu();
+            ui.Start();
         }
     }
+
 }
+
+
 
 
 // program är våra startpunkt i vår applikation,

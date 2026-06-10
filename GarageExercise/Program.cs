@@ -2,6 +2,7 @@
 using GarageExercise.Handlers;
 using GarageExercise.Interface;
 using GarageExercise.Models;
+using GarageExercise.UI;
 
 namespace GarageExercise
 {
@@ -9,19 +10,9 @@ namespace GarageExercise
     {
         static void Main(string[] args)
         {
-            IGarage<Vehicle> garage =
-                new Garage<Vehicle>(10);
+            IUI ui = new ConsoleUI();
 
-            IHandler handler =
-                new GarageHandler(garage);
-
-            handler.AddVehicle(
-                new Car("ABC123", "Red", 4, "Gasoline"));
-
-            Vehicle? vehicle =
-                handler.FindVehicle("ABC123");
-
-            Console.WriteLine(vehicle);
+            ui.ShowMainMenu();
         }
     }
 }

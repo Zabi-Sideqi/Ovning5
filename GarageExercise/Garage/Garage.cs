@@ -1,4 +1,5 @@
-﻿using GarageExercise.Models;
+﻿using GarageExercise.Interface;
+using GarageExercise.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace GarageExercise.Garage
 {
-    public class Garage<T> : IEnumerable<T> where T : Vehicle
+    public class Garage<T> : IGarage<T>, IEnumerable<T> where T : Vehicle
     {
         private readonly T[] vehicles;
 

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GarageExercise.Interface;
 
 namespace GarageExercise.Models
 {
-    public abstract class Vehicle
+    public abstract class Vehicle : IVehicle
     {
         public string RegistrationNumber { get; set; }
         public string Color { get; set; }

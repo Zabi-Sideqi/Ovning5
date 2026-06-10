@@ -1,4 +1,6 @@
 ﻿using GarageExercise.Garage;
+using GarageExercise.Handlers;
+using GarageExercise.Interface;
 using GarageExercise.Models;
 
 namespace GarageExercise
@@ -7,23 +9,19 @@ namespace GarageExercise
     {
         static void Main(string[] args)
         {
-            Garage<Vehicle> garage = new Garage<Vehicle>(10);
+            IGarage<Vehicle> garage =
+                new Garage<Vehicle>(10);
 
-            garage.AddVehicle(
-                new Car("ABC123", "Black", 4, "Gasoline"));
+            IHandler handler =
+                new GarageHandler(garage);
 
-            garage.AddVehicle(
-                new Car("DEF456", "Red", 4, "Diesel"));
+            handler.AddVehicle(
+                new Car("ABC123", "Red", 4, "Gasoline"));
 
-            garage.AddVehicle(
-                new Bus("BUS111", "Blue", 6, 50));
+            Vehicle? vehicle =
+                handler.FindVehicle("ABC123");
 
-            var cars = garage.SearchByType("Car");
-
-            foreach (var vehicle in cars)
-            {
-                Console.WriteLine(vehicle);
-            }
+            Console.WriteLine(vehicle);
         }
     }
 }

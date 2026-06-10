@@ -3,7 +3,6 @@ using GarageExercise.Handlers;
 using GarageExercise.Interface;
 using GarageExercise.Models;
 using GarageExercise.UI;
-using System.Diagnostics.Metrics;
 
 namespace GarageExercise
 {
@@ -11,14 +10,25 @@ namespace GarageExercise
     {
         static void Main(string[] args)
         {
-            IUI ui = new ConsoleUI();
+            IGarage<Vehicle> garage =
+                new Garage<Vehicle>(10);
+
+            IHandler handler =
+                new GarageHandler(garage);
+
+            handler.AddVehicle(
+                new Car("ABC123", "Red", 4, "Gasoline"));
+
+            handler.AddVehicle(
+                new Bus("BUS111", "Blue", 6, 50));
+
+            IUI ui =
+                new ConsoleUI(handler);
 
             ui.Start();
         }
     }
-
 }
-
 
 
 

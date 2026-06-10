@@ -7,6 +7,12 @@ namespace GarageExercise.UI
 {
     public class ConsoleUI : IUI
     {
+        private readonly IHandler handler;
+        public ConsoleUI(IHandler handler)
+        {
+            this.handler = handler;
+        }
+
         public void Start()
         {
             bool running = true;
@@ -17,6 +23,7 @@ namespace GarageExercise.UI
                 Console.WriteLine("1. Add Vehicle");
                 Console.WriteLine("2. Remove Vehicle");
                 Console.WriteLine("3. Find Vehicle");
+                Console.WriteLine("4. Show All Vehicles");
                 Console.WriteLine("0. Exit");
 
                 string? choise = Console.ReadLine();
@@ -35,7 +42,14 @@ namespace GarageExercise.UI
                         Console.WriteLine("Find Vehicle selected");
                         break;
 
-                    case " 0":
+                    case "4":
+                        foreach (var vehicle in handler.GetAllVehicles())
+                        {
+                            Console.WriteLine(vehicle);
+                        }
+                        break;
+
+                    case "0":
                         running = false;
                         break;
 

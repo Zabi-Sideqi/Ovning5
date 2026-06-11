@@ -10,9 +10,18 @@ namespace GarageExercise
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter garage capacity: ");
-            int capacity =
-                int.Parse(Console.ReadLine()!);
+            
+            int capacity;
+            while (true)
+            {
+                Console.WriteLine("Enter garage capacity: ");
+                if(int.TryParse(Console.ReadLine(), out capacity))
+                {
+                    break;
+                }
+                Console.WriteLine("Invalid number. Try again. ");
+            }
+                
 
             IGarage<Vehicle> garage =
                 new Garage<Vehicle>(capacity);

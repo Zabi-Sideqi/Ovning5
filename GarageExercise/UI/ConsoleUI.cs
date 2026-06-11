@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using GarageExercise.Interface;
 using GarageExercise.Models;
-
+using GarageExercise.Handlers;
 namespace GarageExercise.UI
 {
     public class ConsoleUI : IUI
@@ -67,7 +67,21 @@ namespace GarageExercise.UI
                         break;
 
                     case "2":
-                        Console.WriteLine("Remove Vehicle selected");
+                        Console.Write("Registration Number: ");
+
+                        string registrationNumberToRemove = Console.ReadLine()!;
+
+                        bool removed = 
+                            handler.RemoveVehicle(registrationNumberToRemove);
+                        if (removed)
+                        {
+                            Console.WriteLine("Vehicle removed");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Vehicle not found");
+                        }
+                        
                         break;
 
                     case "3":

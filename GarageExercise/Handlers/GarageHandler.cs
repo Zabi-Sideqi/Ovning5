@@ -1,5 +1,4 @@
 ﻿using GarageExercise.Interface;
-using GarageExercise.Interface;
 using GarageExercise.Models;
 using System;
 using System.Collections.Generic;
@@ -35,9 +34,5 @@ namespace GarageExercise.Handlers
             return garage;
         }
 
-        IEnumerable<object> IHandler.GetAllVehicles()
-        {
-            return GetAllVehicles();
-        }
     }
 }

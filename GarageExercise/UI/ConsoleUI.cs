@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using GarageExercise.Interface;
+using GarageExercise.Models;
 
 namespace GarageExercise.UI
 {
     public class ConsoleUI : IUI
     {
         private readonly IHandler handler;
+        
+
         public ConsoleUI(IHandler handler)
         {
             this.handler = handler;
@@ -26,12 +29,41 @@ namespace GarageExercise.UI
                 Console.WriteLine("4. Show All Vehicles");
                 Console.WriteLine("0. Exit");
 
-                string? choise = Console.ReadLine();
+                string? choice = Console.ReadLine();
 
-                switch (choise)
+                switch (choice)
                 {
                     case "1":
-                        Console.WriteLine("Add Vehicle selected");
+
+                        Console.Write("Registration Number: ");
+                        string registrationNumber = Console.ReadLine()!;
+
+                        Console.Write("Color: ");
+                        string color = Console.ReadLine()!;
+
+                        Console.Write("Number Of Wheels: ");
+                        int numberOfWheels = int.Parse(Console.ReadLine()!);
+
+                        Console.Write("Fuel Type: ");
+                        string fuelType = Console.ReadLine()!;
+
+                        Car car = new Car(
+                            registrationNumber,
+                            color,
+                            numberOfWheels,
+                            fuelType);
+
+                        bool added = handler.AddVehicle(car);
+
+                        if (added)
+                        {
+                            Console.WriteLine("Vehicle added successfully");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Vehicle could not be added");
+                        }
+
                         break;
 
                     case "2":
@@ -54,7 +86,7 @@ namespace GarageExercise.UI
                         break;
 
                     default:
-                        Console.WriteLine("Ivalid choice");
+                        Console.WriteLine("Invalid choice");
                         break;
 
 

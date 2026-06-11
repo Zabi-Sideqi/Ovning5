@@ -11,5 +11,7 @@ namespace GarageExercise.Interface
         bool RemoveVehicle(string registrationNumber);
         Vehicle? FindVehicle(string registrationNumber);
         IEnumerable<Vehicle> GetAllVehicles();
+        Dictionary<string, int> GetVehicleTypesCount();
+
     }
 }

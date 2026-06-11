@@ -12,6 +12,7 @@ namespace GarageExercise.Interface
         bool RemoveVehicle( string registrationNumber);
 
         T? FindVehicle(string registrationNumber );
+        Dictionary<string, int> GetVehicleTypesCount();
 
         int Capacity { get; }
         int Count { get; }

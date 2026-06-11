@@ -33,6 +33,10 @@ namespace GarageExercise.Handlers
         {
             return garage;
         }
+        public Dictionary<string, int> GetVehicleTypesCount()
+        {
+            return garage.GetVehicleTypesCount();
+        }
 
     }
 }

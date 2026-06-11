@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using GarageExercise.Interface;
 using GarageExercise.Models;
-using GarageExercise.Handlers;
 namespace GarageExercise.UI
 {
     public class ConsoleUI : IUI
     {
         private readonly IHandler handler;
-        
+
 
         public ConsoleUI(IHandler handler)
         {
@@ -27,6 +26,7 @@ namespace GarageExercise.UI
                 Console.WriteLine("2. Remove Vehicle");
                 Console.WriteLine("3. Find Vehicle");
                 Console.WriteLine("4. Show All Vehicles");
+                Console.WriteLine("5. Show Vehicle Statistics");
                 Console.WriteLine("0. Exit");
 
                 string? choice = Console.ReadLine();
@@ -71,7 +71,7 @@ namespace GarageExercise.UI
 
                         string registrationNumberToRemove = Console.ReadLine()!;
 
-                        bool removed = 
+                        bool removed =
                             handler.RemoveVehicle(registrationNumberToRemove);
                         if (removed)
                         {
@@ -81,7 +81,7 @@ namespace GarageExercise.UI
                         {
                             Console.WriteLine("Vehicle not found");
                         }
-                        
+
                         break;
 
                     case "3":
@@ -104,6 +104,14 @@ namespace GarageExercise.UI
                         foreach (var vehicle in handler.GetAllVehicles())
                         {
                             Console.WriteLine(vehicle);
+                        }
+                        break;
+                    case "5":
+                        var statistics =
+                        handler.GetVehicleTypesCount();
+                        foreach (var item in statistics)
+                        {
+                            Console.WriteLine($"{item.Key}: {item.Value}");
                         }
                         break;
 

@@ -27,6 +27,7 @@ namespace GarageExercise.UI
                 Console.WriteLine("3. Find Vehicle");
                 Console.WriteLine("4. Show All Vehicles");
                 Console.WriteLine("5. Show Vehicle Statistics");
+                Console.WriteLine("6. Search Vehicles");
                 Console.WriteLine("0. Exit");
 
                 string? choice = Console.ReadLine();
@@ -114,6 +115,52 @@ namespace GarageExercise.UI
                             Console.WriteLine($"{item.Key}: {item.Value}");
                         }
                         break;
+
+                    case "6":
+                        Console.WriteLine("1. Search By Type");
+                        Console.WriteLine("2. Search By Color And Wheels");
+
+                        string? searchChoice = Console.ReadLine()!;
+                        switch (searchChoice)
+                        {
+                            case "1":
+                                Console.Write("Vehicle Type: ");
+                                string type = Console.ReadLine()!;
+                                var vehiclesByType =
+                                   handler.SearchByType(type);
+                                foreach (var vehicle in vehiclesByType)
+                                {
+                                    Console.WriteLine(vehicle);
+                                }
+                                break;
+                            case "2":
+
+                                Console.Write("Color: ");
+
+                                string searchColor =
+                                    Console.ReadLine()!;
+
+                                Console.Write("Number Of Wheels: ");
+
+                                int wheels =
+                                    int.Parse(Console.ReadLine()!);
+
+                                var vehicles =
+                                    handler.SearchByColorAndWheels(
+                                        searchColor,
+                                        wheels);
+
+                                foreach (var vehicle in vehicles)
+                                {
+                                    Console.WriteLine(vehicle);
+                                }
+
+                                break;
+                        }
+
+                        break;
+
+
 
                     case "0":
                         running = false;

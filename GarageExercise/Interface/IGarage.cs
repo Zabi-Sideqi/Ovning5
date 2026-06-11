@@ -13,6 +13,10 @@ namespace GarageExercise.Interface
 
         T? FindVehicle(string registrationNumber );
         Dictionary<string, int> GetVehicleTypesCount();
+        List<T> SearchByType(string type);
+        List<T> SearchByColorAndWheels(
+            string color,
+            int numberOfWheels);
 
         int Capacity { get; }
         int Count { get; }

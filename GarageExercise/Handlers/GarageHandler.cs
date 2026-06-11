@@ -37,6 +37,17 @@ namespace GarageExercise.Handlers
         {
             return garage.GetVehicleTypesCount();
         }
-
+        public List<Vehicle> SearchByType(string type)
+        {
+            return garage.SearchByType(type);
+        }
+        public List<Vehicle> SearchByColorAndWheels(
+            string color,
+            int numberOfWheels)
+        {
+            return garage.SearchByColorAndWheels(
+                color,
+                numberOfWheels);
+        }
     }
 }

@@ -13,5 +13,11 @@ namespace GarageExercise.Interface
         IEnumerable<Vehicle> GetAllVehicles();
         Dictionary<string, int> GetVehicleTypesCount();
 
+        List<Vehicle> SearchByType(string type);
+
+        List<Vehicle> SearchByColorAndWheels(
+            string color,
+            int numberOfWheels);
+
     }
 }

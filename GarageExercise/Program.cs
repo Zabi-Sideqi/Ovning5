@@ -10,8 +10,12 @@ namespace GarageExercise
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter garage capacity: ");
+            int capacity =
+                int.Parse(Console.ReadLine()!);
+
             IGarage<Vehicle> garage =
-                new Garage<Vehicle>(10);
+                new Garage<Vehicle>(capacity);
 
             IHandler handler =
                 new GarageHandler(garage);

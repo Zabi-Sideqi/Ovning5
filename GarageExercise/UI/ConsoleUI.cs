@@ -71,7 +71,19 @@ namespace GarageExercise.UI
                         break;
 
                     case "3":
-                        Console.WriteLine("Find Vehicle selected");
+                        Console.Write("Registration Number: ");
+                        string registrationNumberToFind = Console.ReadLine()!;
+
+                        Vehicle? foundVehicle =
+                            handler.FindVehicle(registrationNumberToFind);
+                        if (foundVehicle != null)
+                        {
+                            Console.WriteLine(foundVehicle);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Vehicle not found");
+                        }
                         break;
 
                     case "4":

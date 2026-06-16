@@ -33,38 +33,19 @@ namespace GarageExercise.UI
                 string? choice = Console.ReadLine();
 
                 switch (choice)
+
                 {
                     case "1":
-
-                        Console.Write("Registration Number: ");
-                        string registrationNumber = Console.ReadLine()!;
-
-                        Console.Write("Color: ");
-                        string color = Console.ReadLine()!;
-
-                        Console.Write("Number Of Wheels: ");
-                        int numberOfWheels = int.Parse(Console.ReadLine()!);
-
-                        Console.Write("Fuel Type: ");
-                        string fuelType = Console.ReadLine()!;
-
-                        Car car = new Car(
-                            registrationNumber,
-                            color,
-                            numberOfWheels,
-                            fuelType);
-
-                        bool added = handler.AddVehicle(car);
-
+                        Vehicle newVehicle = CreateVehicle();
+                        bool added = handler.AddVehicle(newVehicle);
                         if (added)
                         {
-                            Console.WriteLine("Vehicle added successfully");
+                            Console.WriteLine("Vehicle added Successfully");
                         }
                         else
                         {
-                            Console.WriteLine("Vehicle could not be added");
+                            Console.WriteLine("Vehcile coud not be added");
                         }
-
                         break;
 
                     case "2":
@@ -140,10 +121,9 @@ namespace GarageExercise.UI
                                 string searchColor =
                                     Console.ReadLine()!;
 
-                                Console.Write("Number Of Wheels: ");
 
                                 int wheels =
-                                    int.Parse(Console.ReadLine()!);
+                                    ReadInt("Number Of Wheels: ");
 
                                 var vehicles =
                                     handler.SearchByColorAndWheels(
@@ -180,5 +160,177 @@ namespace GarageExercise.UI
             }
 
         }
+
+        private Vehicle CreateVehicle()
+        {
+            Console.WriteLine("Choose Vehicle Type");
+            Console.WriteLine("1. Car");
+            Console.WriteLine("2. Bus");
+            Console.WriteLine("3. Boat");
+            Console.WriteLine("4. Motorcycle");
+            Console.WriteLine("5. Airplane");
+
+            string? vehicleChoice = Console.ReadLine();
+
+            switch (vehicleChoice)
+            {
+                case "1":
+                    return CreateCar();
+
+                case "2":
+                    return CreateBus();
+
+                case "3":
+                    return CreateBoat();
+
+                case "4":
+                    return CreateMotorcycle();
+
+                case "5":
+                    return CreateAirplane();
+
+                default:
+                    Console.WriteLine("Invalid vehicle type");
+                    return CreateCar();
+            }
+        }
+
+
+
+        private string ReadRegistrationNumber()
+        {
+            Console.Write("Registration Number: ");
+            return Console.ReadLine()!;
+        }
+        private string ReadColor()
+        {
+            Console.Write("Color: ");
+            return Console.ReadLine()!;
+        }
+        private int ReadNumberOfWheels()
+        {
+            int wheels;
+
+            Console.Write("Number Of Wheels: ");
+
+            while (!int.TryParse(Console.ReadLine(), out wheels))
+            {
+                Console.Write("Invalid number. Try again: ");
+            }
+
+            return wheels;
+        }
+
+        private int ReadInt(string message)
+        {
+            int value;
+
+            Console.Write(message);
+
+            while (!int.TryParse(Console.ReadLine(), out value))
+            {
+                Console.Write("Invalid number. Try again: ");
+            }
+
+            return value;
+        }
+        private double ReadDouble(string message)
+        {
+            double value;
+
+            Console.Write(message);
+
+            while (!double.TryParse(Console.ReadLine(), out value))
+            {
+                Console.Write("Invalid number. Try again: ");
+            }
+
+            return value;
+        }
+
+
+
+
+        private Vehicle CreateCar()
+        {
+            string registrationNumber = ReadRegistrationNumber();
+            string color = ReadColor();
+
+            int numberOfWheels = ReadNumberOfWheels();
+
+
+            Console.Write("Fuel Type: ");
+            string fuelType = Console.ReadLine()!;
+
+            return new Car(
+                registrationNumber,
+                color,
+                numberOfWheels,
+                fuelType);
+        }
+        private Vehicle CreateBus()
+        {
+            string registratonNumber = ReadRegistrationNumber();
+            string color = ReadColor();
+            int numberOfWheels = ReadNumberOfWheels();
+            int numberOfSeats =
+                ReadInt("Number Of Seats: ");
+
+            return new Bus(
+                registratonNumber,
+                color,
+                numberOfWheels,
+                numberOfSeats);
+        }
+
+        private Vehicle CreateBoat()
+        {
+            string registrationNumber = ReadRegistrationNumber();
+            string color = ReadColor();
+            int numberOfWheels = ReadNumberOfWheels();
+
+            double length = ReadDouble("Length: ");
+            return new Boat(
+                registrationNumber,
+                color,
+                numberOfWheels,
+                length
+                );
+
+
+        }
+        private Vehicle CreateMotorcycle()
+        {
+            string registrationNumber = ReadRegistrationNumber();
+            string color = ReadColor();
+            int numberOfWheels = ReadNumberOfWheels();
+            
+            int cylinderVolume = ReadInt("Cylinder Volume: ");
+            return new Motorcycle(
+                registrationNumber,
+                color,
+                numberOfWheels,
+                cylinderVolume
+                );
+        }
+
+        private Vehicle CreateAirplane()
+        {
+            string registrationNumber = ReadRegistrationNumber();
+            string color = ReadColor();
+            int numberOfWheels = ReadNumberOfWheels();
+            
+            int numberOfEngines = ReadInt("Number Of Engines: ");
+            return new Airplane(
+                registrationNumber,
+                color,
+                numberOfWheels,
+                numberOfEngines
+                );
+        }
     }
+
 }
+
+
+

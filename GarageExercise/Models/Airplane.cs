@@ -16,5 +16,10 @@ namespace GarageExercise.Models
         {
             NumberOfEngines = numberOfEngines;
         }
+        public override string ToString()
+        {
+            return base.ToString() +
+               $", Number Of Engines: {NumberOfEngines}";
+        }
     }
 }

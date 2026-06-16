@@ -16,7 +16,11 @@ namespace GarageExercise.Models
         {
             FuelType = fuelType;
         }
-        
+        public override string ToString()
+        {
+            return base.ToString() +
+                $", Fuel Type: {FuelType}";
+        }
     }
     
     

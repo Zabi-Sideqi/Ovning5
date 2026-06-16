@@ -16,6 +16,16 @@ namespace GarageExercise.Models
         {
             CylinderVolume = cylinderVolume;
         }
+        public override string ToString()
+        {
+            return base.ToString()+
+                $", Cylinder Volume: {CylinderVolume}";
+        }
 
     }
 }
+
+
+
+
+

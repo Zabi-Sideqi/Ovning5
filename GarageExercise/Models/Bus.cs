@@ -17,5 +17,9 @@ namespace GarageExercise.Models
             NumberOfSeats = numberOfSeats;
         }
 
+        public override string ToString()
+        {
+            return base.ToString() + $", Number Of Seats: {NumberOfSeats}";
+        }
     }
 }

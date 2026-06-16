@@ -16,5 +16,10 @@ namespace GarageExercise.Models
         {
             Length = length;
         }
+        public override string ToString()
+        {
+            return base.ToString() +
+                   $", Boat Length: {Length}";
+        }
     }
 }

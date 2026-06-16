@@ -67,11 +67,16 @@ namespace GarageExercise.UI
                         break;
 
                     case "3":
+
                         Console.Write("Registration Number: ");
-                        string registrationNumberToFind = Console.ReadLine()!;
+
+                        string registrationNumberToFind =
+                            Console.ReadLine()!;
 
                         Vehicle? foundVehicle =
-                            handler.FindVehicle(registrationNumberToFind);
+                            handler.FindVehicle(
+                                registrationNumberToFind);
+
                         if (foundVehicle != null)
                         {
                             Console.WriteLine(foundVehicle);
@@ -80,6 +85,7 @@ namespace GarageExercise.UI
                         {
                             Console.WriteLine("Vehicle not found");
                         }
+
                         break;
 
                     case "4":
@@ -98,22 +104,36 @@ namespace GarageExercise.UI
                         break;
 
                     case "6":
+
                         Console.WriteLine("1. Search By Type");
                         Console.WriteLine("2. Search By Color And Wheels");
+                        Console.WriteLine("3. Advanced Search");
 
-                        string? searchChoice = Console.ReadLine()!;
+                        string? searchChoice = Console.ReadLine();
+
                         switch (searchChoice)
                         {
                             case "1":
+
                                 Console.Write("Vehicle Type: ");
+
                                 string type = Console.ReadLine()!;
+
                                 var vehiclesByType =
-                                   handler.SearchByType(type);
+                                    handler.SearchByType(type);
+
                                 foreach (var vehicle in vehiclesByType)
                                 {
                                     Console.WriteLine(vehicle);
                                 }
+
+                                if (vehiclesByType.Count == 0)
+                                {
+                                    Console.WriteLine("No vehicles found.");
+                                }
+
                                 break;
+
                             case "2":
 
                                 Console.Write("Color: ");
@@ -121,19 +141,77 @@ namespace GarageExercise.UI
                                 string searchColor =
                                     Console.ReadLine()!;
 
-
-                                int wheels =
+                                int searchWheels =
                                     ReadInt("Number Of Wheels: ");
 
                                 var vehicles =
                                     handler.SearchByColorAndWheels(
                                         searchColor,
-                                        wheels);
+                                        searchWheels);
 
                                 foreach (var vehicle in vehicles)
                                 {
                                     Console.WriteLine(vehicle);
                                 }
+
+                                if (vehicles.Count == 0)
+                                {
+                                    Console.WriteLine("No vehicles found.");
+                                }
+
+                                break;
+
+                            case "3":
+
+                                Console.Write(
+                                    "Registration Number (leave empty): ");
+
+                                string? regNr =
+                                    Console.ReadLine();
+
+                                Console.Write(
+                                    "Color (leave empty): ");
+
+                                string? color =
+                                    Console.ReadLine();
+
+                                Console.Write(
+                                    "Number Of Wheels (leave empty): ");
+
+                                string? wheelsInput =
+                                    Console.ReadLine();
+
+                                int? wheels = null;
+
+                                if (int.TryParse(
+                                    wheelsInput,
+                                    out int parsedWheels))
+                                {
+                                    wheels = parsedWheels;
+                                }
+
+                                var result =
+                                    handler.SearchVehicle(
+                                        regNr,
+                                        color,
+                                        wheels);
+
+                                foreach (var vehicle in result)
+                                {
+                                    Console.WriteLine(vehicle);
+                                }
+
+                                if (result.Count == 0)
+                                {
+                                    Console.WriteLine("No vehicles found.");
+                                }
+
+                                break;
+
+                            default:
+
+                                Console.WriteLine(
+                                    "Invalid search option.");
 
                                 break;
                         }

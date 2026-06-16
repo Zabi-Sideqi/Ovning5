@@ -20,5 +20,13 @@ namespace GarageExercise.Interface
 
         int Capacity { get; }
         int Count { get; }
+
+        List<T> SearchVehicles(
+            string? registrationNumber,
+            string? color,
+            int? numberOfWheels);
     }
 }
+
+
+

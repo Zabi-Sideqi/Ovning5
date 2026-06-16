@@ -49,5 +49,17 @@ namespace GarageExercise.Handlers
                 color,
                 numberOfWheels);
         }
+
+        public List<Vehicle> SearchVehicle(
+            string? registrationNumber,
+            string? color,
+            int? numberOfWheels)
+        {
+            return garage.SearchVehicles(
+                registrationNumber,
+                color,
+                numberOfWheels);
+        }
     }
 }
+

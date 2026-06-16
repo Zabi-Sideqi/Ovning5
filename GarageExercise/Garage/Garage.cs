@@ -21,8 +21,8 @@ namespace GarageExercise.Garage
             vehicles = new T[capacity];
             Count = 0;
         }
-    
-      public bool AddVehicle(T vehicle)
+
+        public bool AddVehicle(T vehicle)
         {
             if (FindVehicle(vehicle.RegistrationNumber) != null)
             {
@@ -79,7 +79,7 @@ namespace GarageExercise.Garage
 
         public IEnumerator<T> GetEnumerator()
         {
-            foreach (var  vehicle in vehicles)
+            foreach (var vehicle in vehicles)
             {
                 if (vehicle != null)
                 {
@@ -90,22 +90,23 @@ namespace GarageExercise.Garage
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
-        }   
+        }
 
-        public Dictionary<string, int > GetVehicleTypesCount()
-        { Dictionary<string, int> vehicleTypes = new Dictionary<string, int>();
+        public Dictionary<string, int> GetVehicleTypesCount()
+        {
+            Dictionary<string, int> vehicleTypes = new Dictionary<string, int>();
             foreach (var vehicle in this)
             {
-                string TypeName = vehicle.GetType().Name;
-                if (vehicleTypes.ContainsKey(TypeName))
+                string typeName = vehicle.GetType().Name;
+                if (vehicleTypes.ContainsKey(typeName))
                 {
-                    vehicleTypes[TypeName]++;
+                    vehicleTypes[typeName]++;
                 }
                 else
                 {
-                    vehicleTypes[TypeName] = 1;
+                    vehicleTypes[typeName] = 1;
                 }
-                
+
             }
             return vehicleTypes;
         }
@@ -144,5 +145,45 @@ namespace GarageExercise.Garage
             }
             return result;
         }
+
+        public List<T> SearchVehicles(
+            string? registrationNumber,
+            string? color,
+            int? numberOfWheels)
+        {
+            List<T> result = new List<T>();
+
+            foreach (var vehicle in this)
+            {
+                bool matches = true;
+                if (!string.IsNullOrWhiteSpace(registrationNumber))
+                { 
+                    matches &= vehicle.RegistrationNumber.Equals(registrationNumber,
+                        StringComparison.OrdinalIgnoreCase);
+                }
+                if (!string.IsNullOrWhiteSpace(color))
+                {
+                    matches &= vehicle.Color.Equals(
+                        color,
+                        StringComparison.OrdinalIgnoreCase);
+                }
+                if (numberOfWheels.HasValue)
+                {
+                    matches &= vehicle.NumberOfWheels == numberOfWheels.Value;
+                }
+                if (matches)
+                { 
+                    result.Add(vehicle);
+                }
+                    
+
+                
+            }
+                return result;
+        }
+        
     }
 }
+
+
+

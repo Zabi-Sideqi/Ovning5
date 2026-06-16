@@ -19,5 +19,12 @@ namespace GarageExercise.Interface
             string color,
             int numberOfWheels);
 
+        List<Vehicle> SearchVehicle(
+           string? registrationNumber,
+           string? color,
+           int? numberOfWheels);
+
     }
 }
+
+

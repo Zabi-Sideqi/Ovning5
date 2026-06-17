@@ -19,7 +19,15 @@ namespace GarageExercise.Handlers
         {
             return garage.AddVehicle(vehicle);
         }
+        public bool IsGarageFull()
+        {
+            return garage.Count >= garage.Capacity;
+        }
 
+        public bool RegistrationNumberExists(string registrationNumber)
+        {
+            return garage.FindVehicle(registrationNumber) != null;
+        }
         public bool RemoveVehicle(string registrationNumber)
         {
             return garage.RemoveVehicle(registrationNumber);

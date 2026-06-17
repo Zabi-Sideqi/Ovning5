@@ -9,6 +9,8 @@ namespace GarageExercise.Interface
     {
         bool AddVehicle(Vehicle vehicle);
         bool RemoveVehicle(string registrationNumber);
+        bool IsGarageFull();
+        bool RegistrationNumberExists(string registrationNumber);
         Vehicle? FindVehicle(string registrationNumber);
         IEnumerable<Vehicle> GetAllVehicles();
         Dictionary<string, int> GetVehicleTypesCount();

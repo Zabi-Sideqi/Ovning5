@@ -37,14 +37,32 @@ namespace GarageExercise.UI
                 {
                     case "1":
                         Vehicle newVehicle = CreateVehicle();
+
                         bool added = handler.AddVehicle(newVehicle);
+
                         if (added)
                         {
-                            Console.WriteLine("Vehicle added Successfully");
+                            Console.WriteLine(
+                                $"Vehicle {newVehicle.RegistrationNumber} added successfully.");
                         }
                         else
                         {
-                            Console.WriteLine("Vehcile coud not be added");
+                            if (handler.IsGarageFull())
+                            {
+                                Console.WriteLine(
+                                    "Garage is full. Remove a vehicle before adding a new one.");
+                            }
+                            else if (handler.RegistrationNumberExists(
+                                newVehicle.RegistrationNumber))
+                            {
+                                Console.WriteLine(
+                                    $"Registration number {newVehicle.RegistrationNumber} already exists.");
+                            }
+                            else
+                            {
+                                Console.WriteLine(
+                                    "Vehicle could not be added.");
+                            }
                         }
                         break;
 
